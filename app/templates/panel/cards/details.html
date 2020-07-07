@@ -1,0 +1,4 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item p-4">Name: {{ data['title'] }}</li>
+  <li class="list-group-item p-4">Subject: {% for sub in data['subject'] %}<a href="{{ 'https://notion.so/{}'.format(data['subjects'][sub]['id']) }}">{{sub}}</a><br/>{% endfor %}</li>
+</ul>

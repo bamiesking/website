@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{{ url_for('main.index') }}">Ben Amies-King</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3 col-10 offset-1 text-center">
+        <h1 class="text-center">Sign In</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <dl class="form-group">
+                {{ render_field(form.email, class='form-control', placeholder='Email') }}
+                {{ render_field(form.password, class='form-control', placeholder='Password') }}
+            </dl>
+            <dl>
+                {{ render_field(form.remember_me, class='form-check d-inline checkbox') }}
+                {{ render_field(form.submit, class='btn btn-lg btn-primary btn-block') }}
+            </dl>
+        </form>
+        <p class="text-center">Forgot your password? <a href="{{ url_for('auth.reset_password_request') }}">Click to reset</a></p>
+        <p class="text-center">New user? <a href="{{ url_for('auth.register') }}">Click to register</a></p>
+    </div>
+</div>
+{% endblock %}    

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block modal %}
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirm changes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to make changes to this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmChanges">Confirm changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('main.index')}}">Ben Amies-King</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <a href="{{ url_for('admin.panel')}}" class="navbar-text mr-auto">
+        Admin Panel
+        </a>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3 col-10 offset-1 text-center">
+        <h1>Edit User</h1>
+        <form action="" method="post" novalidate id="adminForm">
+            {{ form.hidden_tag() }}
+            <dl class="form-group">
+                {{ render_field(form.username, class='form-control', placeholder='Username') }}
+                {{ render_field(form.email, class='form-control', placeholder='Email address') }}
+                {{ render_field(form.notion_id, class='form-control', placeholder='Notion ID') }}
+            </dl>
+            <dl>
+                {{ render_field(form.admin, class='form-check d-inline checkbox') }}
+                {{ render_field(form.submit, class='btn btn-lg btn-primary btn-block', id='submitButton') }}
+            </dl>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(function(){
+        $('#submitButton').prop('disabled', true);
+    });
+    var $approval = false;
+    $('#adminForm').change(function(){
+        $approval = true;
+        $('#submitButton').prop('disabled', false);
+    }).submit(function(event){
+        console.log($approval);
+        if ($approval == true) {
+            $('#confirmationModal').modal();
+            return false;
+        }
+        return true;
+    });
+
+    $('#confirmChanges').click(function(){
+        $approval = false;
+        $('#submitButton').click();
+    });
+</script>
+{% endblock %}

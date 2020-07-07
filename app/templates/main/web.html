@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="{{ url_for('main.index') }}">Ben Amies-King</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<span class="navbar-text mr-auto">
+		Online tutoring | Web solutions
+		</span>
+		<ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.tutoring') }}">Tutoring</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.web') }}">Web portfolio</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.contact') }}">Get in touch</a>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0 ml-auto" action="/cv" method="post">
+			<button class="btn btn-success my-2 my-sm-0" type="submit">Download CV</button>
+		</form>
+	</div>
+</nav>
+<div class="nav-scroller bg-white box-shadow">
+  <nav class="nav nav-underline">
+    <a class="nav-link active" href="#">Dashboard</a>
+    <a class="nav-link" href="#">
+      Friends
+      <span class="badge badge-pill bg-light align-text-bottom">27</span>
+    </a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="nav-link" href="#">Suggestions</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+  </nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5 mx-auto">
+	<div class="col-10 col-md-3 offset-1 mb-5">
+		<div class="card">
+		<img class="card-img-top" src="{{ url_for('static', filename='profile_picture.jpg')}}" alt="Profile picture">
+		<div class="card-body">
+			<h5 class="card-title">About me</h5>
+			<p class="card-text">I'm a fourth year Physics student at the University of Durham, working on a Master's project titled 'Simulation of Sisyphus cooling of hydrogen atoms for use in the search for dark matter and fifth forces'.</p>
+			<p class="card-text"> I'm also a part-time online tutor, and I have an interest in Python web development and simulation of physical systems.</p>		
+		</div>
+		<div class="card-footer text-center">
+			<a href="/cv" class="btn btn-outline-success">Download CV</a>
+		</div>
+		</div>							
+	</div>
+	<div class="col-10 offset-1 col-md-3 offset-md-0">
+		<div class="card mb-4">
+			<div class="card-header">
+				Contact
+			</div>
+			<div class="card-body">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">+44 (0) 7720 642878</li>
+					<li class="list-group-item">bamiesking@gmail.com</li>
+				</ul>	
+			</div>
+		</div>	
+	</div>				
+</div>
+{% endblock %}

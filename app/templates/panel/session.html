@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{{ url_for('main.index') }}">My Tutoring Panel</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-dark  p-0 m-0">
+        {%- for breadcrumb in breadcrumbs -%}
+        <li class="breadcrumb-item"><a href="{{breadcrumb.url}}">{{breadcrumb.text}}</a></li>
+        {%- endfor -%}
+      </ol>
+    </nav>
+    <form class="form-inline my-2 my-lg-0 ml-auto" action="/cv" method="post">
+      <button class="btn btn-primary my-2 my-sm-0" type="submit" disabled>Launch Session</button>
+    </form>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-3 pt-3">
+  <div class="col-10 offset-1">
+    <h1>{{ session['title'] }}</h1>
+  </div>
+</div>
+<div class="row mt-3 pt-3">
+  <div class="col-md-8 offset-md-2">
+      {% for s in session['notion'].children %}
+        <!--{%  if s.type == 'header' %}
+          <h3>{{ s.title }}</h3>
+        {% endif %}
+        {% if s.type == 'text' %}
+          <p>{{ s.title }}</p>
+        {% endif %}-->
+        {% if s.type == 'collection_view' %}
+        <h3>{{ s.title }}</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              {% for property in s.collection.get_schema_properties()[::-1] %}
+                <th scope="col"> {{ property.name }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in s.collection.get_rows() %}
+            <tr>
+              {% for property in s.collection.get_schema_properties()[::-1] %}
+                <td>
+                  {% if property.slug == 'resource' %}
+                    {% for resource in row.get_property(property.slug) %}
+                      <a href="{{ url_for('panel.resource', resource_id=resource.id) }}">{{ resource.source }}: {{ resource.title }}</a>
+                    {% endfor %}
+                  {% elif property.slug == 'status' %}
+                    {% for tag in row.get_property(property.slug) %}
+                      {{ tag }}
+                    {% endfor %}
+                  {% elif property.slug == 'complete' %}
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input position-static" {% if row.get_property(property.slug) %} checked {% endif %} disabled>
+                    </div>
+                  {% else %}
+                    {{ row.get_property(property.slug) }}
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+        {% endif %}
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

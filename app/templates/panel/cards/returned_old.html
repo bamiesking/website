@@ -1,0 +1,11 @@
+<ul class="list-group list-group-flush">
+  {% for s in student['notion'].children %}
+    {% if s.type == 'collection_view' %}
+      {% for row in s.collection.get_rows() %}
+        {% if row.marked %}
+          <li class="list-group-item"><a href="{{url_for('panel.assignment', resource_id=row.id.replace('-', ''))}}">{{row.title}}: {{row.score}}/{{row.total}}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</ul>

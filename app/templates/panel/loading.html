@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+<div class="loader"></div>
+
+<script>window.location.replace({{url_for('panel.panel')}})</script>
+{% endblock %}

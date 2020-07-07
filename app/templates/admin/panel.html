@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{{ url_for('main.index') }}">Admin Panel</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-dark  p-0 m-0">
+        {%- for breadcrumb in breadcrumbs -%}
+        <li class="breadcrumb-item"><a href="{{breadcrumb.url}}">{{breadcrumb.text}}</a></li>
+        {%- endfor -%}
+      </ol>
+    </nav>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-3 pt-3 mx-5">
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <h5 class="card-header">My details</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item p-4">Name: {{ details[0] }}</li>
+        <li class="list-group-item p-4">Email: {{ details[1] }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <h5 class="card-header">Users</h3>
+      <ul class="list-group list-group-flush">
+        {% for user in users %}
+        <a class="list-group-item list-group-item-action p-4" href="{{ url_for('admin.user', email=user.email)}}">{{ user.username }} | {{ user.email }}</a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <h5 class="card-header">Issues</h5>
+    </div>
+  </div>
+</div>
+{% endblock %}

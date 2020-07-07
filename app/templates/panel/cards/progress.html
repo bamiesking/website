@@ -1,0 +1,19 @@
+{% for subject in data['subject'] %}
+<h5 class="card-title">{{ subject }}</h5>
+Content tutored
+<div class="progress mb-3">
+  <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: {{ 100*data['covered_topics'][subject]/data['subjects'][subject]['n_lesson_plans']}}%" aria-valuenow="{{ (100*data['covered_topics'][subject]/data['subjects'][subject]['n_lesson_plans'])|round|int }}" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="right" title="{{ (100*data['covered_topics'][subject]/data['subjects'][subject]['n_lesson_plans'])|round|int }}%"></div>
+</div>
+Exercises completed
+<div class="progress mb-3">
+  <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: {{ 100*data['completed_exercises'][subject]/data['subjects'][subject]['n_exercises']}}%" aria-valuenow="{{ (100*data['completed_exercises'][subject]/data['subjects'][subject]['n_exercises'])|round|int }}" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="right" title="{{ (100*data['completed_exercises'][subject]/data['subjects'][subject]['n_exercises'])|round|int }}%"></div>
+</div>
+Exercises returned
+<div class="progress mb-3">
+  <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: {{ 100*data['marked_exercises'][subject]/data['subjects'][subject]['n_exercises']}}%" aria-valuenow="{{ (100*data['marked_exercises'][subject]/data['subjects'][subject]['n_exercises'])|round|int }}" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="right" title="{{ (100*data['marked_exercises'][subject]/data['subjects'][subject]['n_exercises'])|round|int }}%"></div>
+</div>
+Content revised
+<div class="progress mb-3">
+  <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: {{ 100*data['revised_topics'][subject]/data['subjects'][subject]['n_lesson_plans']}}%" aria-valuenow="{{ (100*data['revised_topics'][subject]/data['subjects'][subject]['n_lesson_plans'])|round|int }}" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="right" title="{{ (100*data['revised_topics'][subject]/data['subjects'][subject]['n_lesson_plans'])|round|int }}%"></div>
+</div>
+{% endfor %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+#calendly iframe {
+	display: flex;
+	min-height: 470px;
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="{{ url_for('main.index') }}">Ben Amies-King</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<span class="navbar-text mr-auto">
+		Online tutoring | Web solutions
+		</span>
+		<ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.tutoring') }}">Tutoring</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.web') }}">Web portfolio</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('main.contact') }}">Get in touch</a>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0 ml-auto" action="/cv" method="post">
+			<button class="btn btn-success my-2 my-sm-0" type="submit">Download CV</button>
+		</form>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5 mx-auto">
+	<div class="col-10 col-md-3 offset-1 mb-5">
+		<div class="card">
+			<img class="card-img-top" src="{{ url_for('static', filename='profile_picture.jpg')}}" alt="Profile picture">
+			<div class="card-body">
+				<h5 class="card-title">Book a tutorial</h5>
+				<p class="card-text">Use the calendar to the right to book a tutorial with me.</p>systems.</p>		
+			</div>
+		</div>							
+	</div>
+	<div class="col-10 offset-1 col-md-5 offset-md-0">
+		<div class="card mb-4">
+			<div class="card-header">
+				Book 
+			</div>
+			<div class="card-body p-0" id="calendly">
+			</div>
+		</div>	
+	</div>				
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script> 
+<script>
+Calendly.initInlineWidget({
+ url: 'https://calendly.com/bamiesking/tutorial?hide_event_type_details=1',
+ parentElement: document.getElementById('calendly'),
+ prefill: {
+ 	name: {{ current_user.username|tojson }},
+ 	email: {{ current_user.email|tojson }},
+ 	customAnswers: {
+ 		a1: {{subject|tojson}}
+ 	}
+ },
+ utm: {}
+});
+</script>
+{% endblock %}

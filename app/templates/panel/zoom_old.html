@@ -1,0 +1,32 @@
+{% block head %}
+<!-- import #zmmtg-root css -->
+<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.9/css/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.9/css/react-select.css" />
+{% endblock %}
+
+{% block nav %}
+<a class="navbar-brand" href="{{ url_for('main.index') }}">Zoom Meeting</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-3 pt-3 mx-5">
+  <div class="col-md-4">
+    <p>Some text</p>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<!-- import ZoomMtg -->
+<script src="https://source.zoom.us/zoom-meeting-1.7.9.min.js"></script>
+
+
+{% endblock %}

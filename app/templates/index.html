@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<a class="navbar-brand" href="{{ url_for('main.index') }}">Ben Amies-King</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+	<span class="navbar-text mr-auto">
+	Online tutoring | Web solutions
+	</span>
+	<ul class="navbar-nav mx-auto">
+		<li class="nav-item">
+			<a class="nav-link" href="{{ url_for('main.tutoring') }}">Tutoring</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ url_for('main.web') }}">Web portfolio</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ url_for('main.contact') }}">Get in touch</a>
+		</li>
+	</ul>
+	<form class="form-inline my-2 my-lg-0 ml-auto" action="/cv" method="post">
+		<button class="btn btn-success my-2 my-sm-0" type="submit">Download CV</button>
+	</form>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5 mx-auto">
+	<div class="col-10 col-md-3 offset-1 mb-5">
+		<div class="card">
+		<img class="card-img-top" src="{{ url_for('static', filename='profile_picture.jpg')}}" alt="Profile picture">
+		<div class="card-body">
+			<h5 class="card-title">About me</h5>
+			<p class="card-text">I'm a fourth year Physics student at the University of Durham, working on a Master's project titled 'Simulation of Sisyphus cooling of hydrogen atoms for use in the search for dark matter and fifth forces'.</p>
+			<p class="card-text"> I'm also a part-time online tutor, and I have an interest in Python web development and simulation of physical systems.</p>		
+		</div>
+		<div class="card-footer text-center">
+			<a href="/cv" class="btn btn-outline-success">Download CV</a>
+		</div>
+		</div>							
+	</div>
+	<div class="col-10 offset-1 col-md-3 offset-md-0">
+		<div class="card mb-4">
+			<div class="card-header">
+				Contact
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">+44 (0) 7720 642878</li>
+				<li class="list-group-item">bamiesking@gmail.com</li>
+			</ul>	
+		</div>	
+		<div class="card mb-4">
+			<div class="card-header">
+				Web services
+			</div>
+			<div class="card-body">
+				<div class="mx-auto">
+					<attr title="HTML5"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="CSS3"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="JavaScript"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="php"><img src="https://www.php.net/images/logos/new-php-logo.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="Python"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"  style="height: 50px; width:</attr> 50px;"/></attr>
+				</div>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Proficient in modern web development technologies</li>
+				<li class="list-group-item">Extensive experience with Python in data collection and manipulation, and dynamic web services.</li>
+			</ul>		
+			<div class="card-footer text-center">
+				<div class="btn-group">
+		 			<a href="/portfolio" class="btn btn-outline-primary">Web portfolio</a>
+		 			<a href="/web" class="btn btn-outline-secondary">Learn more</a>
+		 		</div>
+			</div>
+		</div>	
+	</div>				
+	<div class="col-10 offset-1 col-md-3 offset-md-0">
+		<div class="card mb-4">
+			<div class="card-header">
+				Tutoring
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Over 500 completed sessions and over 200 five-star reviews</li>
+				<li class="list-group-item">Over 3 years tutoring experience </li>
+				<li class="list-group-item">Runner-up for Best Grade Improvement tutor award 2019</li>
+				<li class="list-group-item">Custom panel to keep students engaged and in the loop</li>
+			</ul>
+			<div class="card-footer text-center">
+				<div class="btn-group">
+		 			<a href="https://www.mytutor.co.uk/tutors/63661/" class="btn btn-outline-primary">MyTutor Profile</a>
+		 			<a href="/tutoring" class="btn btn-outline-secondary">Learn more</a>
+		 		</div>
+			</div>
+		</div>
+		<div class="card mb-4">
+			<div class="card-header">
+				My projects
+			</div>
+			<ul class="list-group list-group-flush">
+				<a href="{{ url_for('timetable.index') }}" class="list-group-item list-group-item-action">Durham University Timetable Downloader</a>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

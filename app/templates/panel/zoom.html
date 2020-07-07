@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Zoom WebSDK</title>
+    <meta charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.9/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.9/css/react-select.css" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+    {{api }}
+    <!-- import ZoomMtg dependencies -->
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/react.min.js"></script>
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/react-dom.min.js"></script>
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/redux.min.js"></script>
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/redux-thunk.min.js"></script>
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/jquery.min.js"></script>
+    <script src="https://source.zoom.us/1.7.9/lib/vendor/lodash.min.js"></script>
+    
+    <!-- import local .js file -->
+    <script src="https://source.zoom.us/zoom-meeting-1.7.9.min.js"></script>
+    <script src="https://browser.sentry-cdn.com/<VERSION>/bundle.min.js"></script>
+
+    <script>
+    Sentry.init({ dsn: {{ sentry_dsn|tojson }} });
+
+    const meetConfig = {
+      apiKey: {{ api|tojson }},
+      meetingNumber: {{ id|tojson }},
+      leaveUrl: 'https://bamiesking.uk',
+      signature: {{ signature|tojson }},
+      userName: 'Ben Amies-King',
+      userEmail: 'bamiesking@gmail.com', // required for webinar
+      passWord: {{ password|tojson }}, // if required
+      role: 0 // 1 for host; 0 for attendee or webinar
+    };
+
+
+    ZoomMtg.setZoomJSLib('https://source.zoom.us/1.7.9/lib', '/av'); 
+    ZoomMtg.preLoadWasm();
+    ZoomMtg.prepareJssdk();
+
+    ZoomMtg.init({
+      debug: true,
+      leaveUrl: meetConfig.leaveUrl,
+      isSupportAV: true,
+      success() {
+        ZoomMtg.join({
+          meetingNumber: meetConfig.meetingNumber,
+          userName: meetConfig.userName,
+          signature: meetConfig.signature,
+          apiKey: meetConfig.apiKey,
+          userEmail: meetConfig.userEmail,
+          passWord: meetConfig.passWord,
+          success(res) {
+            console.log(res);
+          },
+          error(res) {
+            console.log(res);
+          }
+        });
+      },
+      error(res) {
+        console.log(res);
+      }
+    });
+    </script>
+</body>
+</html>
