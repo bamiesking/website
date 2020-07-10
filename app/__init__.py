@@ -10,6 +10,7 @@ from flask_breadcrumbs import Breadcrumbs, default_breadcrumb_root
 
 from app.main import bp as main_bp
 from app.auth import bp as auth_bp
+from app.errors import not_found_error, internal_server_error
 from app.panel import bp as panel_bp
 from app.timetable import bp as timetable_bp
 from app.admin import bp as admin_bp
@@ -46,6 +47,10 @@ def create_app(config_class=Config):
     app.register_blueprint(panel_bp, url_prefix="/panel")
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(calendly_bp)
+
+    # Register error handlers
+    app.register_error_handler(404, not_found_error)
+    app.register_error_handler(500, internal_server_error)
 
     default_breadcrumb_root(panel_bp, '.')
 
