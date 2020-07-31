@@ -24,20 +24,22 @@ def session_dlc(*args, **kwargs):
     session_id = None
     text = 'Session'
     if 'session_id' in request.view_args:
+        panel_id = request.view_args['panel_id']
         session_id = request.view_args['session_id']
         notion_data = Config.notion_client.get_block(session_id)
         text = 'Session {}'.format(notion_data.title.split(' ')[-1])
-    return [{'text': text, 'url': url_for('panel.session', session_id=session_id)}]
+    return [{'text': text, 'url': url_for('panel.session', session_id=session_id, panel_id=panel_id)}]
 
 
 def resource_dlc(*args, **kwargs):
     resource_id = None
     text = 'Resource'
     if 'resource_id' in request.view_args:
+        panel_id = request.view_args['panel_id']
         resource_id = request.view_args['resource_id']
         notion_data = Config.notion_client.get_block(resource_id)
         text = notion_data.title
-    return [{'text': text, 'url': url_for('panel.resource', resource_id=resource_id)}]
+    return [{'text': text, 'url': url_for('panel.resource', resource_id=resource_id, panel_id=panel_id)}]
 
 
 @bp.route('/', defaults={'panel_id': None})
@@ -167,12 +169,12 @@ def card(card, id):
                     if row.marked:
                         data.append(row)
 
-    return render_template('panel/cards/{}.html'.format(card), data=data)
+    return render_template('panel/cards/{}.html'.format(card), data=data, panel_id=id)
 
 
-@bp.route('/session/<session_id>')
+@bp.route('/<panel_id>/session/<session_id>')
 @register_breadcrumb(bp, '.session', '', dynamic_list_constructor=session_dlc)
-def session(session_id):
+def session(panel_id, session_id):
     notion_data = Config.notion_client.get_block(session_id)
     data = {
         'notion': notion_data,
@@ -180,9 +182,9 @@ def session(session_id):
     }
     return render_template('panel/session.html', session=data, title=data['title'])
 
-@bp.route('/resource/<resource_id>')
+@bp.route('/<panel_id>/resource/<resource_id>')
 @register_breadcrumb(bp, '.resource', '', dynamic_list_constructor=resource_dlc)
-def resource(resource_id):
+def resource(panel_id, resource_id):
     notion_data = Config.notion_client.get_block(resource_id)
     data = {
         'notion': notion_data,
@@ -190,9 +192,9 @@ def resource(resource_id):
     }
     return render_template('panel/resource.html', session=data, title=data['title'])
 
-@bp.route('/assignment/<resource_id>')
+@bp.route('/<panel_id>/assignment/<resource_id>')
 @register_breadcrumb(bp, '.assignment', '', dynamic_list_constructor=resource_dlc)
-def assignment(resource_id):
+def assignment(panel_id, resource_id):
     notion_data = Config.notion_client.get_block(resource_id)
     data = {
         'notion': notion_data,
@@ -200,8 +202,8 @@ def assignment(resource_id):
     }
     return render_template('panel/resource.html', session=data)
 
-@bp.route('/meeting/<id>/<password>')
-def meeting(id, password):
+@bp.route('/<panel_id>/meeting/<id>/<password>')
+def meeting(panel_id, id, password):
     data = {'apiKey': Config.ZOOM_KEY, 'apiSecret': Config.ZOOM_SECRET, 'meetingNumber': id, 'role': 0}
     signature = generate_signature(data)
     return render_template('panel/zoom.html', api=data['apiKey'], signature=signature, id=id, password=password, sentry_dsn=Config.SENTRY_DSN)
