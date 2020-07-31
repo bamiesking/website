@@ -73,7 +73,7 @@ def portfolio():
 
 @bp.route('/margaret')
 def margaret():
-    return redirect('https://www.notion.so/St-Margaret-s-Centre-Access-Database-c25c3b395047434c9dbb8a26bc1d6c5f')
+    return redirect('https://github.com/bamiesking/st-margaret/wiki')
 
 @bp.route('/debug-sentry')
 def trigger_error():
