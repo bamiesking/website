@@ -39,6 +39,9 @@ class LinkIDForm(FlaskForm):
         user = User.query.filter_by(notion_id=notion_id.data).first()
         if user is not None:
             raise ValidationError('Account with this ID already exists')
-        block = Config.notion_client.get_block(notion_id.data)
-        if type(block) is not notion.collection.CollectionRowBlock:
+        try:
+            block = Config.notion_client.get_block(notion_id.data)
+            if type(block) is not notion.collection.CollectionRowBlock:
+                raise ValidationError('Invalid ID')
+        except:
             raise ValidationError('Invalid ID')

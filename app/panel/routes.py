@@ -48,7 +48,11 @@ def resource_dlc(*args, **kwargs):
 def panel(panel_id):
     if panel_id is None:
         if current_user.is_authenticated:
-            panel_id = current_user.notion_id
+            if current_user.notion_id is not None:
+                panel_id = current_user.notion_id
+            else:
+                flash('No ID linked to your account', 'danger')
+                return redirect(url_for('auth.link_id'))
         elif 'id_hash' in request.cookies:
             panel_id = request.cookies.get('id_hash')
         else:
