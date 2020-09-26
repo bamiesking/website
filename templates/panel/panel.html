@@ -119,7 +119,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='details', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='details', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#details").empty().html(res);
@@ -131,7 +131,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='sessions', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='sessions', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#sessions").empty().html(res);
@@ -143,7 +143,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='progress', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='progress', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#progress").empty().html(res);
@@ -156,7 +156,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='assignments', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='assignments', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#assignments").empty().html(res);
@@ -168,7 +168,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='assessments', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='assessments', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#assessments").empty().html(res);
@@ -180,7 +180,7 @@ $(function() {
   $.ajax({
     type: "POST",
     contentType: 'text/html',
-    url: {{ url_for('panel.card', card='returned', id=id )|tojson}},
+    url: {{ url_for('panel.card', card='returned', id=id)|tojson}},
     dataType: "html",
     success: function(res){
       $("#returned").empty().html(res);

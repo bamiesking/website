@@ -14,7 +14,9 @@ def login():
     if current_user.is_authenticated:
         if current_user.admin:
             return redirect(url_for('admin.panel'))
-        return redirect(url_for('panel.panel'))
+        if current_user.notion_id is not None:
+            return redirect(url_for('panel.panel'))
+        return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -78,7 +80,7 @@ def reset_password(token):
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html', form=form, title="Reset Password")
 
-@bp.route('/link_id')
+@bp.route('/link_id', methods=['GET', 'POST'])
 def link_id():
     if not current_user.is_authenticated:
         return redirect(url_for('auth.login'))

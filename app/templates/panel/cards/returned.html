@@ -1,5 +1,0 @@
-<ul class="list-group list-group-flush">
-  {% for row in data %}
-    <a class="list-group-item list-group-item-action p-4" href="{{url_for('panel.assignment', resource_id=row.id.replace('-', ''))}}">{{row.title}}: &emsp; {{row.score}}/{{row.total}} &emsp; {{(100*row.score/row.total)|round|int}}%</a>
-  {% endfor %}
-</ul>

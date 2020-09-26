@@ -1,5 +1,0 @@
-<ul class="list-group list-group-flush">
-  {% for session in data %}
-    <a class="list-group-item list-group-item-action p-4" href="{{url_for('panel.session', session_id=session[2])}}">Session {{ session[0] }}: &emsp; {{ session[1] }}</a>
-  {% endfor %}
-</ul>
