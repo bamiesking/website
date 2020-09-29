@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, make_response, send_file, Blueprint
 from config import Config
 from app.email import send_email
-from app.calendly import calendly_create_webhook, calendly_check_webhook
+from app.calendly import calendly_check_webhook
 from app.auth import User
 import traceback
 import requests

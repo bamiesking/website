@@ -1,11 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask
 from config import Config
 
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 from flask_migrate import Migrate
-from flask_menu import Menu
 from flask_breadcrumbs import Breadcrumbs, default_breadcrumb_root
 
 from app.main import bp as main_bp
@@ -21,6 +20,8 @@ from app.auth import login
 from app.email import mail
 
 from app.timetable import strip_auth_error
+
+
 migrate = Migrate()
 breadcrumbs = Breadcrumbs()
 
