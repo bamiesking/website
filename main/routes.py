@@ -60,11 +60,9 @@ def tutoring():
 
 @bp.route('/web')
 def web():
-    return render_template("main/web.html", title='Web services')
-
-@bp.route('/contact')
-def contact():
-    return render_template("main/contact.html", title='Get in touch')
+    flash('That page is under construction', 'danger')
+    return redirect(url_for('.index'))
+    # return render_template("main/web.html", title='Web services')
 
 @bp.route('/portfolio')
 def portfolio():
