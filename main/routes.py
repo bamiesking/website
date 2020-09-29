@@ -19,7 +19,7 @@ def index():
 
 @bp.route("/cv", methods=['GET', 'POST'])
 def cv():
-    return send_file(url_for('static', filename='cv.pdf'))
+    return redirect('https://bamiesking-assets.ams3.digitaloceanspaces.com/cv.pdf')
 
 
 @bp.route("/create_session", methods=['GET', 'POST'])
