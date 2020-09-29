@@ -20,12 +20,14 @@ from app.auth import db as auth_db
 from app.auth import login
 from app.email import mail
 
+from app.timetable import strip_auth_error
 migrate = Migrate()
 breadcrumbs = Breadcrumbs()
 
 sentry_sdk.init(
     dsn=Config.SENTRY_DSN,
-    integrations=[FlaskIntegration()]
+    integrations=[FlaskIntegration()],
+    before_send=strip_auth_error
 )
 
 
