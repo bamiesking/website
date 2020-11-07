@@ -7,17 +7,7 @@
 {% block content %}
 <div class="row mt-5 mx-auto">
 	<div class="col-10 col-md-3 offset-1 mb-5">
-		<div class="card">
-		<img class="card-img-top" src="https://bamiesking-assets.ams3.digitaloceanspaces.com/profile_picture.jpg" alt="Profile picture">
-		<div class="card-body">
-			<h5 class="card-title">About me</h5>
-			<p class="card-text">I'm a fourth year Physics student at the University of Durham, working on a Master's project titled 'Simulation of Sisyphus cooling of hydrogen atoms for use in the search for dark matter and fifth forces'.</p>
-			<p class="card-text"> I'm also a part-time online tutor, and I have an interest in Python web development and simulation of physical systems.</p>		
-		</div>
-		<div class="card-footer text-center">
-			<a href="/cv" class="btn btn-outline-success">Download CV</a>
-		</div>
-		</div>							
+	{% include 'about_me_card.html' %}								
 	</div>
 	<div class="col-10 offset-1 col-md-7 offset-md-0">
 		<div class="card mb-4">
