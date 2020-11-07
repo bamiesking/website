@@ -14,6 +14,8 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
+    if 'benatutor.co.uk' in request.url_root:
+        return redirect(url_for('panel.panel', id=0))
     return render_template("main/index.html", title='Welcome')
 
 
