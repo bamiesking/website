@@ -204,7 +204,7 @@ def assignment(panel_id, resource_id):
         'notion': notion_data,
         'title': notion_data.title
     }
-    return render_template('panel/resource.html', session=data)
+    return render_template('panel/assignment.html', session=data, panel_id=panel_id, type=typ)
 
 @bp.route('/<panel_id>/meeting/<id>/<password>')
 def meeting(panel_id, id, password):
