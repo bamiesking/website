@@ -24,6 +24,9 @@
 </div>
 <div class="row mt-3 pt-3">
   <div class="col-md-8 offset-md-2">
+    {% for file in session['notion'].files %}
+    {{ file.url }}
+    {% endfor %}
       {% for s in session['notion'].children %}
         <!--{%  if s.type == 'header' %}
           <h3>{{ s.title }}</h3>
@@ -31,8 +34,9 @@
         {% if s.type == 'text' %}
           <p>{{ s.title }}</p>
         {% endif %}-->
+        {{ s }}
         {% if s.type == 'collection_view' %}
-        <h3>{{ s.title }}</h3>
+        <h3>{{ s.title }} </h3>
         <table class="table">
           <thead>
             <tr>

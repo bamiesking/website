@@ -27,18 +27,8 @@
 
 {% block content %}
 <div class="row mt-5 mx-auto">
-	<div class="col-10 col-md-3 offset-1 mb-5">
-		<div class="card">
-		<img class="card-img-top" src="{{ url_for('static', filename='profile_picture.jpg')}}" alt="Profile picture">
-		<div class="card-body">
-			<h5 class="card-title">About me</h5>
-			<p class="card-text">I'm a fourth year Physics student at the University of Durham, working on a Master's project titled 'Simulation of Sisyphus cooling of hydrogen atoms for use in the search for dark matter and fifth forces'.</p>
-			<p class="card-text"> I'm also a part-time online tutor, and I have an interest in Python web development and simulation of physical systems.</p>		
-		</div>
-		<div class="card-footer text-center">
-			<a href="{{ url_for('main.cv') }}" class="btn btn-outline-success">Download CV</a>
-		</div>
-		</div>							
+	<div class="col-10 col-md-4 offset-1 mb-5">
+	{% include 'about_me_card.html' %}						
 	</div>
 	<div class="col-10 offset-1 col-md-3 offset-md-0">
 		<div class="card mb-4">
@@ -52,7 +42,7 @@
 				<a class="list-group-item" href="https://linkedin.com/in/bamiesking">LinkedIn</a>
 			</ul>	
 		</div>	
-		<div class="card mb-4">
+		<!--<div class="card mb-4">
 			<div class="card-header">
 				Web services
 			</div>
@@ -75,15 +65,13 @@
 		 			<a href="/web" class="btn btn-outline-secondary">Learn more</a>
 		 		</div>
 			</div>
-		</div>	
-	</div>				
-	<div class="col-10 offset-1 col-md-3 offset-md-0">
+		</div>	-->
 		<div class="card mb-4">
 			<div class="card-header">
 				Tutoring
 			</div>
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">Over 500 completed sessions and over 200 five-star reviews</li>
+				<li class="list-group-item">Over 500 completed sessions and 100% five-star reviews</li>
 				<li class="list-group-item">Over 3 years tutoring experience </li>
 				<li class="list-group-item">Runner-up for Best Grade Improvement tutor award 2019</li>
 				<li class="list-group-item">Custom panel to keep students engaged and in the loop</li>
@@ -96,11 +84,17 @@
 		 		</div>
 			</div>
 		</div>
+	</div>				
+	<div class="col-10 offset-1 col-md-3 offset-md-0">
+
 		<div class="card mb-4">
 			<div class="card-header">
 				My projects
 			</div>
 			<ul class="list-group list-group-flush">
+				<a href="{{ url_for('sisyphus.index') }}" class="list-group-item list-group-item-action">Sisyphus Cooling</a>
+				<li class="list-group-item">DurHack 2020</li>
+				<a href="https://joannecoaching.com/" class="list-group-item list-group-item-action">Joanne Thompson Coaching</a>
 				<a href="{{ url_for('timetable.index') }}" class="list-group-item list-group-item-action">Durham Timetable Downloader</a>
 				<a href="{{ url_for('panel.panel', panel_id='6530b9cb087946d58a15c78b4ff0dc14') }}" class="list-group-item list-group-item-action">Tutoring Panel</a>
 			</ul>

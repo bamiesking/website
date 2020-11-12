@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('main.index') }}">Ben Amies-King</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <span class="navbar-text mr-auto">
+        <a href="{{ url_for('sisyphus.index')}}" style="color: inherit;">Master's physics student</a> | <a href="{{ url_for('main.tutoring')}}" style="color: inherit;">Online tutor</a>
+        </span>
+        <ul class="navbar-nav mx-auto">
+            <!--<li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.tutoring') }}">Tutoring</a>
+            </li>-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0 ml-auto" action="/cv" method="post">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Download CV</button>
+        </form>
+    </div>
+</nav>
