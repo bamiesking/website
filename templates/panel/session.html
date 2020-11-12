@@ -57,7 +57,7 @@
                     {% endfor %}
                   {% elif property.slug == 'status' %}
                     {% for tag in row.get_property(property.slug) %}
-                      {{ tag }}
+                      {{ tag|replace('M a i n','.') }}
                     {% endfor %}
                   {% elif property.slug == 'complete' %}
                     <div class="form-check">

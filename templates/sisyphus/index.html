@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5 mx-auto">
+	<div class="col-10 col-md-3 offset-1 mb-5">
+		<div class="card mb-4">
+			<img class="card-img-top" src="https://assets.bamiesking.uk/sisyphus/sisyphus.jpg" alt="Sisyphus pushing a rock up a hill">
+			<div class="card-body">
+				<h5 class="card-title">Overview</h5>
+				<p class="card-text">My Master's project is titled 'Simulation of Sisyphus cooling of hydrogen atoms for use in the search for dark matter and fifth forces'</p>
+			    <p class="card-text">The aim of the project is to simulate Sisyphus cooling in hydrogen (and hydrogenic) atom clouds, in order to determine whether it presents a feasible mechanism of supercooling hydrogen.</p>
+			</div>
+		</div>						
+	</div>
+	<div class="col-10 offset-1 col-md-4 offset-md-0">
+		<div class="card mb-4">
+			<img class="card-img-top" src="https://assets.bamiesking.uk/sisyphus/plots/zeeman_n2l1_1605051284.5237849.png" alt="Zeeman shifts of hydrogen 2s and 2p states hyperfine structure">
+			<div class="card-body">
+			    <p class="card-text">Zeeman shifts of the 2s and 2p excited states hyperfine structure of Hydrogen.</p>	
+			</div>
+		</div>
+		<div class="card mb-4">
+			<img class="card-img-top" src="https://assets.bamiesking.uk/sisyphus/plots/zeeman_n1l0_1605051661.447401.png" alt="Zeeman shifts of hydrogen ground state hyperfine structure">
+			<div class="card-body">
+			    <p class="card-text">Zeeman shifts of the ground state hyperfine structure of Hydrogen. States are labelled in the uncoupled basis.</p>	
+			</div>
+		</div>
+
+		<!--<div class="card mb-4">
+			<div class="card-header">
+				Web services
+			</div>
+			<div class="card-body">
+				<div class="mx-auto">
+					<attr title="HTML5"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="CSS3"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="JavaScript"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="php"><img src="https://www.php.net/images/logos/new-php-logo.svg"  style="height: 50px; width: 50px;"/></attr>
+					<attr title="Python"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"  style="height: 50px; width:</attr> 50px;"/></attr>
+				</div>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Proficient in modern web development technologies</li>
+				<li class="list-group-item">Extensive experience with Python in data collection and manipulation, and dynamic web services.</li>
+			</ul>		
+			<div class="card-footer text-center">
+				<div class="btn-group">
+		 			<a href="/portfolio" class="btn btn-outline-primary">Web portfolio</a>
+		 			<a href="/web" class="btn btn-outline-secondary">Learn more</a>
+		 		</div>
+			</div>
+		</div>	-->
+
+	</div>				
+	<div class="col-10 offset-1 col-md-3 offset-md-0">
+		<div class="card mb-4">
+			<div class="card-header">
+				Supervisors
+			</div>
+			<ul class="list-group list-group-flush">
+				<a href="https://www.dur.ac.uk/physics/staff/profiles/?id=4705" class="list-group-item list-group-item-action">Prof M P A Jones</a>
+				<a href="https://www.dur.ac.uk/chemistry/staff/profile/?id=5513" class="list-group-item list-group-item-action">Dr D Carty</a>
+			</ul>
+		</div>
+		<div class="card mb-4">
+			<div class="card-header">
+				Links
+			</div>
+			<ul class="list-group list-group-flush">
+				<a href="https://www.notion.so/Research-cb9c5958d1c543df87348ea2a5528b9a" class="list-group-item list-group-item-action">Notion Workspace</a>
+			</ul>	
+		</div>	
+		<div class="card mb-4">
+			<div class="card-header">
+				Files
+			</div>
+			<ul class="list-group list-group-flush">
+				<a href="https://assets.bamiesking.uk/sisyphus/files/Week%206%20Presentation.pptx" class="list-group-item list-group-item-action">Midterm Overview Presentation Slides</a>
+			</ul>	
+		</div>
+	</div>
+</div>
+{% endblock %}
