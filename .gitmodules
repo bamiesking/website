@@ -1,0 +1,6 @@
+[submodule "timetable"]
+	path = timetable
+	url = git@github.com:bamiesking/timetable-downloader.git
+[submodule "panel"]
+	path = panel
+	url = git@github.com:bamiesking/tutoring-panel.git
